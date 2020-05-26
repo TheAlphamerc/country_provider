@@ -1,13 +1,12 @@
 library country_provider;
 
 import 'dart:convert';
-
 import 'package:country_provider/src/constants.dart';
 import 'package:country_provider/src/models/country.dart';
 import 'package:country_provider/src/helper/util.dart';
 import 'package:http/http.dart';
+export 'package:country_provider/src/models/country.dart';
 
-/// A Calculator.
 class CountryProvider {
 
   static Client _client = Client();
