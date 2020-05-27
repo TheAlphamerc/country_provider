@@ -87,15 +87,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _button(String text, Function onPressed) {
     return Container(
+      width: MediaQuery.of(context).size.width * .5,
       // color: Colors.white,
       margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-      child: OutlineButton(
-        color: Colors.grey,
+      child: MaterialButton(
+        color: Colors.blue[400],
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10))),
 
         onPressed: onPressed,
         child: Text(
           text,
-          style: Theme.of(context).typography.black.bodyText1,
+          style: Theme.of(context).typography.dense.bodyText1,
         ),
         // visualDensity: VisualDensity.standard,
       ),
@@ -140,6 +143,16 @@ class _MyHomePageState extends State<MyHomePage> {
                         Radius.circular(10),
                       )),
                   // child:Icon(Icons.drag_handle)
+                ),
+                Center(
+                  child: Text(
+                    "Select search option",
+                    style: Theme.of(context)
+                        .typography
+                        .dense
+                        .headline6
+                        .copyWith(color: Colors.black),
+                  ),
                 ),
                 Expanded(
                   child: ListView(
@@ -321,10 +334,9 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Color(0xfff1f1f1),
       floatingActionButton: FloatingActionButton(
         onPressed: openSearchCountriesButton,
-        child: Icon(Icons.edit),
+        child: Icon(Icons.search),
       ),
       body: Container(
-        // padding: EdgeInsets.symmetric(horizontal: 16),
         alignment: Alignment.center,
         child: _countryList != null && _countryList.isNotEmpty
             ? ListView.builder(
@@ -336,7 +348,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     return SizedBox.shrink();
                   }
                 })
-            : SizedBox(),
+            : Text(
+                "Click search buton to select option",
+                style: Theme.of(context)
+                    .typography
+                    .dense
+                    .bodyText1
+                    .copyWith(color: Colors.black),
+              ),
       ),
     );
   }
