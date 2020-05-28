@@ -3,7 +3,7 @@
         /// RESTCountries Endpoints class.
         /// Below are described the REST endpoints available that you can use to search for countries.
         static String restCounteriesBaseUri = "https://restcountries.eu/rest/v2/";
-        static String allCountrySiffixUri = "all/";
+        static String allCountrySiffixUri = "all?";
         static String countryByName = "name/";
         static String countryByFullname = "?fullText=true";
         static String countryByCode = "alpha/";

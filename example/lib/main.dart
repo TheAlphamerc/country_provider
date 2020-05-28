@@ -30,53 +30,58 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Country> _countryList;
+  bool isLoading = false;
   void _searchCountry(int index) async {
     try {
+      Navigator.pop(context);
+      isLoading = true;
+      setState(() {});
       switch (index) {
         case 0:
-          _countryList = await CountryProvider.getAllCountries();
+          _countryList = await CountryProvider.getAllCountries(filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
           break;
         case 1:
-          _countryList = await CountryProvider.getCountriesByName("India");
+          _countryList = await CountryProvider.getCountriesByName("Ameri",filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
           break;
         case 2:
-          _countryList = [await CountryProvider.getCountryByFullname("India")];
+          _countryList = [await CountryProvider.getCountryByFullname("India",filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true))];
           break;
         case 3:
-          _countryList = [await CountryProvider.getCountryByCode("Ind")];
+          _countryList = [await CountryProvider.getCountryByCode("Ind",filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true))];
           break;
         case 4:
           _countryList = await CountryProvider.getCountriesByListOfCodes([
             "Ind",
             "col",
-          ]);
+            "ru"
+          ],filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
           break;
         case 5:
-          _countryList = await CountryProvider.getCountryByCurrencyCode("Inr");
+          _countryList = await CountryProvider.getCountryByCurrencyCode("Inr",filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
           break;
         case 6:
           _countryList = await CountryProvider.getCountriesByLanguageCode([
             "Hin",
             "en",
-          ]);
+          ],filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
           break;
         case 7:
-          _countryList = await CountryProvider.getCountryByCapitalCity("Delhi");
+          _countryList = await CountryProvider.getCountryByCapitalCity("Delhi",filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
           break;
         case 8:
-          _countryList = await CountryProvider.getCountryByCallingCode(91);
+          _countryList = await CountryProvider.getCountryByCallingCode(91,filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
           break;
         case 9:
-          _countryList = await CountryProvider.getcountryByRegionalBloc("Asia");
+          _countryList = await CountryProvider.getcountryByRegionalBloc("Asia",filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
           break;
         case 10:
-          _countryList = await CountryProvider.getCountriesByContinent("ASEAN");
+          _countryList = await CountryProvider.getCountriesByContinent("ASEAN",filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
           break;
 
         default:
           break;
       }
-      Navigator.pop(context);
+      isLoading = false;
       setState(() {});
 
       print(_countryList.first.name);
@@ -161,7 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       _button("All Countries", () {
                         _searchCountry(0);
                       }),
-                      _button("Countries by name ex: \"India\"", () {
+                      _button("Countries by name ex: \"Ameri\"", () {
                         _searchCountry(1);
                       }),
                       _button("Country by full name ex: \"India\"", () {
@@ -170,13 +175,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       _button("Country by code ex: \"Ind\"", () {
                         _searchCountry(3);
                       }),
-                      _button("Countries by list of code ex: [Ind, Col]", () {
+                      _button("Countries by list of code ex: [Ind, Col,ru]", () {
                         _searchCountry(4);
                       }),
                       _button("Countries by currency code ex: \"Inr\"", () {
                         _searchCountry(5);
                       }),
-                      _button("Countries by language code ex: [en, hin]", () {
+                      _button("Countries by language code ex: [en, hin,ru]", () {
                         _searchCountry(6);
                       }),
                       _button("Country by capital city ex: \"Delhi\"", () {
@@ -234,7 +239,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       _rowData("Capital: ", model.capital),
                       _rowData("Region: ", model.region),
                       Row(children: <Widget>[
-                        Expanded(
+                        model.alpha2Code == null ? SizedBox()
+                        : Expanded(
                           child: _rowData("Alpha2 Code: ", model.alpha2Code),
                         ),
                         Expanded(
@@ -243,12 +249,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       ]),
                       _rowData("Area: ", model.area.toString()),
                       _rowData("Demonym: ", model.demonym),
-                      _rowData("Timezone: ", model.timezones.first),
-                      _rowData("Calling code", model.callingCodes.first),
-                      _showListData("Borders", model.borders),
-                      _showListData("Alt Spellings", model.altSpellings),
-                      _showListData("Currency code",
-                          model.currencies.map((x) => x.name).toList()),
+                      _rowData("Timezone: ", model.timezones?.first),
+                      _rowData("Calling code: ", model.callingCodes?.first),
+                      _showListData("Borders: " , model.borders),
+                      _showListData("Alt Spellings: ", model.altSpellings),
+                      _showListData("Currency Name: " ,
+                          model.currencies?.map((x) => x?.name)?.toList()),
+                      _showListData("Currency code: " ,
+                          model.currencies?.map((x) => x?.code)?.toList()),
+                      _showListData("Currency Symbol: " ,
+                          model.currencies?.map((x) => x?.symbol)?.toList()),
                     ],
                   ),
                 ),
@@ -298,6 +308,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _showListData(String title, List<String> list) {
+    if(list == null || list.isEmpty){
+      return SizedBox.shrink();
+    }
     List<Widget> children = [
       Text(
         title,
@@ -338,7 +351,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         alignment: Alignment.center,
-        child: _countryList != null && _countryList.isNotEmpty
+        child: isLoading ? Center(child: CircularProgressIndicator())
+        : _countryList != null && _countryList.isNotEmpty
             ? ListView.builder(
                 itemCount: _countryList.length,
                 itemBuilder: (context, index) {
