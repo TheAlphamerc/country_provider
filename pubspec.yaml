@@ -1,8 +1,7 @@
 name: country_provider
 description: A new Flutter package project.
 version: 0.0.1
-author:
-homepage:
+homepage: https://github.com/TheAlphamerc/country_provider
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -10,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http:
+  http: ^0.12.1
 
 dev_dependencies:
   flutter_test:

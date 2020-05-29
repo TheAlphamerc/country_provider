@@ -1,3 +1,4 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - 29 May 2020
 
-* TODO: Describe initial release.
+* Add countries search method
+* Add country data filter functionality
