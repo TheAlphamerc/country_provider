@@ -30,6 +30,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Country> _countryList;
+  CountryFilter filter = CountryFilter();
   bool isLoading = false;
   void _searchCountry(int index) async {
     try {
@@ -38,44 +39,55 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {});
       switch (index) {
         case 0:
-          _countryList = await CountryProvider.getAllCountries(filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
+          _countryList =
+              await CountryProvider.getAllCountries(filter: CountryFilter());
           break;
         case 1:
-          _countryList = await CountryProvider.getCountriesByName("Ameri",filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
+          _countryList = await CountryProvider.getCountriesByName("Ameri",
+              filter: CountryFilter());
           break;
         case 2:
-          _countryList = [await CountryProvider.getCountryByFullname("India",filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true))];
+          _countryList = [
+            await CountryProvider.getCountryByFullname("India",
+                filter: CountryFilter())
+          ];
           break;
         case 3:
-          _countryList = [await CountryProvider.getCountryByCode("Ind",filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true))];
+          _countryList = [
+            await CountryProvider.getCountryByCode("Ind",
+                filter: CountryFilter())
+          ];
           break;
         case 4:
-          _countryList = await CountryProvider.getCountriesByListOfCodes([
-            "Ind",
-            "col",
-            "ru"
-          ],filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
+          _countryList = await CountryProvider.getCountriesByListOfCodes(
+              ["Ind", "col", "ru"],
+              filter: CountryFilter());
           break;
         case 5:
-          _countryList = await CountryProvider.getCountryByCurrencyCode("Inr",filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
+          _countryList = await CountryProvider.getCountryByCurrencyCode("Inr",
+              filter: CountryFilter());
           break;
         case 6:
           _countryList = await CountryProvider.getCountriesByLanguageCode([
             "Hin",
             "en",
-          ],filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
+          ], filter: CountryFilter());
           break;
         case 7:
-          _countryList = await CountryProvider.getCountryByCapitalCity("Delhi",filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
+          _countryList = await CountryProvider.getCountryByCapitalCity("Delhi",
+              filter: CountryFilter());
           break;
         case 8:
-          _countryList = await CountryProvider.getCountryByCallingCode(91,filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
+          _countryList = await CountryProvider.getCountryByCallingCode(91,
+              filter: CountryFilter());
           break;
         case 9:
-          _countryList = await CountryProvider.getcountryByRegionalBloc("Asia",filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
+          _countryList = await CountryProvider.getcountryByRegionalBloc("Asia",
+              filter: CountryFilter());
           break;
         case 10:
-          _countryList = await CountryProvider.getCountriesByContinent("ASEAN",filter:CountryFilter(isName: true,isCapital:true, isAlpha3Code: true));
+          _countryList = await CountryProvider.getCountriesByContinent("ASEAN",
+              filter: CountryFilter());
           break;
 
         default:
@@ -90,23 +102,32 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  Widget _button(String text, Function onPressed) {
+  Widget _button(String title, String example, Function onPressed) {
     return Container(
+      height: 60,
       width: MediaQuery.of(context).size.width * .5,
-      // color: Colors.white,
       margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       child: MaterialButton(
-        color: Colors.blue[400],
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10))),
-
-        onPressed: onPressed,
-        child: Text(
-          text,
-          style: Theme.of(context).typography.dense.bodyText1,
-        ),
-        // visualDensity: VisualDensity.standard,
-      ),
+          color: Colors.blue[400],
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10))),
+          onPressed: onPressed,
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  title,
+                  style: Theme.of(context).typography.dense.bodyText1,
+                ),
+                example.isEmpty
+                    ? SizedBox()
+                    : Text(
+                        example,
+                        style: Theme.of(context).typography.dense.bodyText1,
+                      ),
+              ])
+          // visualDensity: VisualDensity.standard,
+          ),
     );
   }
 
@@ -124,8 +145,8 @@ class _MyHomePageState extends State<MyHomePage> {
         return true;
       },
       child: DraggableScrollableSheet(
-        initialChildSize: .40,
-        minChildSize: .30,
+        initialChildSize: .50,
+        minChildSize: .0,
         builder: (BuildContext context, ScrollController scrollcontroller) {
           return Container(
             padding: EdgeInsets.only(top: 10),
@@ -159,41 +180,52 @@ class _MyHomePageState extends State<MyHomePage> {
                         .copyWith(color: Colors.black),
                   ),
                 ),
+                SizedBox(
+                  height: 16,
+                ),
                 Expanded(
                   child: ListView(
                     controller: scrollcontroller,
                     children: <Widget>[
-                      _button("All Countries", () {
+                      _button("Search all countries", "", () {
                         _searchCountry(0);
                       }),
-                      _button("Countries by name ex: \"Ameri\"", () {
+                      _button("Countries by name ", " Example: \"Ameri\"", () {
                         _searchCountry(1);
                       }),
-                      _button("Country by full name ex: \"India\"", () {
+                      _button("Country by full name  ", " Example: \"India\"",
+                          () {
                         _searchCountry(2);
                       }),
-                      _button("Country by code ex: \"Ind\"", () {
+                      _button("Country by code", " Example:  \"Ind\"", () {
                         _searchCountry(3);
                       }),
-                      _button("Countries by list of code ex: [Ind, Col,ru]", () {
+                      _button("Countries by list of code",
+                          " Example: [Ind, Col,ru]", () {
                         _searchCountry(4);
                       }),
-                      _button("Countries by currency code ex: \"Inr\"", () {
+                      _button(
+                          "Countries by currency code ", " Example: \"Inr\"",
+                          () {
                         _searchCountry(5);
                       }),
-                      _button("Countries by language code ex: [en, hin,ru]", () {
+                      _button("Countries by language code",
+                          " Example: [en, hin,ru]", () {
                         _searchCountry(6);
                       }),
-                      _button("Country by capital city ex: \"Delhi\"", () {
+                      _button("Country by capital city", " Example: \"Delhi\"",
+                          () {
                         _searchCountry(7);
                       }),
-                      _button("Country by calling code ex: \"91\"", () {
+                      _button("Country by calling code", " Example: \"91\"",
+                          () {
                         _searchCountry(8);
                       }),
-                      _button("Country by continent ex: \"Asia\"", () {
+                      _button("Country by continent", " Example: \"Asia\"", () {
                         _searchCountry(9);
                       }),
-                      _button("Country by regional bloc ex: \"ASEAN\"", () {
+                      _button("Country by regional bloc", " Example: \"ASEAN\"",
+                          () {
                         _searchCountry(10);
                       }),
                     ],
@@ -238,26 +270,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: <Widget>[
                       _rowData("Capital: ", model.capital),
                       _rowData("Region: ", model.region),
-                      Row(children: <Widget>[
-                        model.alpha2Code == null ? SizedBox()
-                        : Expanded(
-                          child: _rowData("Alpha2 Code: ", model.alpha2Code),
-                        ),
-                        Expanded(
-                          child: _rowData("Alpha3 Code:  ", model.alpha3Code),
-                        ),
-                      ]),
+                      _rowData("Alpha2 Code: ", model.alpha2Code),
+                      _rowData("Alpha3 Code: ", model.alpha3Code),
                       _rowData("Area: ", model.area.toString()),
                       _rowData("Demonym: ", model.demonym),
                       _rowData("Timezone: ", model.timezones?.first),
                       _rowData("Calling code: ", model.callingCodes?.first),
-                      _showListData("Borders: " , model.borders),
+                      _showListData("Borders: ", model.borders),
                       _showListData("Alt Spellings: ", model.altSpellings),
-                      _showListData("Currency Name: " ,
+                      _showListData("Currency Name: ",
                           model.currencies?.map((x) => x?.name)?.toList()),
-                      _showListData("Currency code: " ,
+                      _showListData("Currency code: ",
                           model.currencies?.map((x) => x?.code)?.toList()),
-                      _showListData("Currency Symbol: " ,
+                      _showListData("Currency Symbol: ",
                           model.currencies?.map((x) => x?.symbol)?.toList()),
                     ],
                   ),
@@ -308,7 +333,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _showListData(String title, List<String> list) {
-    if(list == null || list.isEmpty){
+    if (list == null || list.isEmpty) {
       return SizedBox.shrink();
     }
     List<Widget> children = [
@@ -351,25 +376,26 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         alignment: Alignment.center,
-        child: isLoading ? Center(child: CircularProgressIndicator())
-        : _countryList != null && _countryList.isNotEmpty
-            ? ListView.builder(
-                itemCount: _countryList.length,
-                itemBuilder: (context, index) {
-                  if (_countryList[index] != null) {
-                    return _countryData(_countryList[index]);
-                  } else {
-                    return SizedBox.shrink();
-                  }
-                })
-            : Text(
-                "Click search buton to select option",
-                style: Theme.of(context)
-                    .typography
-                    .dense
-                    .bodyText1
-                    .copyWith(color: Colors.black),
-              ),
+        child: isLoading
+            ? Center(child: CircularProgressIndicator())
+            : _countryList != null && _countryList.isNotEmpty
+                ? ListView.builder(
+                    itemCount: _countryList.length,
+                    itemBuilder: (context, index) {
+                      if (_countryList[index] != null) {
+                        return _countryData(_countryList[index]);
+                      } else {
+                        return SizedBox.shrink();
+                      }
+                    })
+                : Text(
+                    "Click search buton to select option",
+                    style: Theme.of(context)
+                        .typography
+                        .dense
+                        .bodyText1
+                        .copyWith(color: Colors.black),
+                  ),
       ),
     );
   }
