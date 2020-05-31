@@ -14,7 +14,17 @@ class CountryProvider {
   static Client _client = Client();
   static String _baseUrl = Constants.restCounteriesBaseUri;
 
-  /// Get all countries.
+  /// Get information about countries
+  /// ```dart
+  /// Future<List<Country>> getCountry(String name){
+  ///  try{
+  ///    List<Country> countries = await CountryProvider.getAllCountries();
+  ///    return result;
+  ///   } catch(error) {
+  ///    print(error);
+  ///  }
+  /// }
+  /// ``
   static Future<List<Country>> getAllCountries({CountryFilter filter}) async {
     var uri =
         "$_baseUrl" + Constants.allCountrySiffixUri + filter.toFormattedUri;
@@ -30,6 +40,21 @@ class CountryProvider {
     throw new Exception(
         "No country found. Please check if https://restcountries.eu is avialable.");
   }
+
+  /// Search by country name
+  ///
+  /// You can pass incomplete country name
+  /// ```dart
+  /// Future<List<Country>> getCountry(String name){
+  ///  try{
+  ///    List<Country> result = await CountryProvider.getCountriesByName("Ameri")
+  ///    return result;
+  ///   } catch(error) {
+  ///    print(error);
+  ///    return null;
+  ///  }
+  /// }
+  /// ```
 
   static Future<List<Country>> getCountriesByName(String name,
       {CountryFilter filter}) async {
@@ -54,6 +79,18 @@ class CountryProvider {
     }
   }
 
+  /// Search by country full name: `India`, `Cambodia`, `Canada`
+  /// ```dart
+  /// Future<Country> getCountry(String name){
+  ///  try{
+  ///    Country result = await CountryProvider.getCountryByFullname("India")?.first;
+  ///    return result;
+  ///   } catch(error) {
+  ///    print(error);
+  ///    return null;
+  ///  }
+  /// }
+  /// ```
   static Future<Country> getCountryByFullname(String name,
       {CountryFilter filter}) async {
     if (name != null && name.isNotEmpty) {
@@ -80,6 +117,18 @@ class CountryProvider {
     }
   }
 
+  /// Search by list of ISO 3166-1 2-letter or 3-letter country codes: `Ind`, `Col`, `ru`
+  /// ```dart
+  /// Future<Country> getCountry(String name){
+  ///  try{
+  ///    Country result = await CountryProvider.getCountryByCode("Ind")?.first;
+  ///    return result;
+  ///   } catch(error) {
+  ///    print(error);
+  ///    return null;
+  ///  }
+  /// }
+  /// ```
   static Future<Country> getCountryByCode(String code,
       {CountryFilter filter}) async {
     if (code != null && code.isNotEmpty) {
@@ -99,6 +148,18 @@ class CountryProvider {
     }
   }
 
+  /// Search by list of ISO 3166-1 2-letter or 3-letter country codes: `["Ind", "col", "ru"]`
+  /// ```dart
+  /// Future<List<Country>> getCountry(String name){
+  ///  try{
+  ///    List<Country> result = CountryProvider.getCountriesByListOfCodes(["Ind", "col", "ru"]);
+  ///    return result;
+  ///   } catch(error) {
+  ///    print(error);
+  ///    return null;
+  ///  }
+  /// }
+  /// ```
   static Future<List<Country>> getCountriesByListOfCodes(List<String> codes,
       {CountryFilter filter}) async {
     if (codes != null && codes.isNotEmpty) {
@@ -124,6 +185,18 @@ class CountryProvider {
     }
   }
 
+  /// Search by ISO 4217 currency code: `Inr`, `Aud`, `Bmd`, `Usd`, `Eur`, `Gbp`
+  /// ```dart
+  /// Future<List<Country>> getCountry(String name){
+  ///  try{
+  ///    List<Country> result = await CountryProvider.getCountryByCurrencyCode("Inr")
+  ///    return result;
+  ///   } catch(error) {
+  ///    print(error);
+  ///    return null;
+  ///  }
+  /// }
+  /// ```
   static Future<List<Country>> getCountryByCurrencyCode(String currencyCode,
       {CountryFilter filter}) async {
     if (currencyCode != null && currencyCode.isNotEmpty) {
@@ -146,6 +219,18 @@ class CountryProvider {
     }
   }
 
+  /// Search by ISO 639-1 language code: `jpn`, `en`, `hin`, `ru`, 
+  /// ```dart
+  /// Future<List<Country>> getCountry(String name){
+  ///  try{
+  ///    List<Country> result = await CountryProvider.getCountriesByLanguageCode(["Hin","en",]);
+  ///    return result;
+  ///   } catch(error) {
+  ///    print(error);
+  ///    return null;
+  ///  }
+  /// }
+  /// ```
   static Future<List<Country>> getCountriesByLanguageCode(
       List<String> languageCode,
       {CountryFilter filter}) async {
@@ -169,6 +254,18 @@ class CountryProvider {
     }
   }
 
+  /// Search by capital city: `Tokyo`, `Rome`, `Bankok`, `London`, `Kampla`
+  /// ```dart
+  /// Future<List<Country>> getCountry(String name){
+  ///  try{
+  ///    List<Country> result = await CountryProvider.getCountryByCapitalCity("Delhi");
+  ///    return result;
+  ///   } catch(error) {
+  ///    print(error);
+  ///    return null;
+  ///  }
+  /// }
+  /// ```
   static Future<List<Country>> getCountryByCapitalCity(String capitalName,
       {CountryFilter filter}) async {
     if (capitalName != null && capitalName.isNotEmpty) {
@@ -176,7 +273,7 @@ class CountryProvider {
           Constants.countriesByCapitalCity +
           capitalName +
           filter.toFormattedUri;
-      
+
       print(uri);
       var response = await _client.get(uri);
 
@@ -192,6 +289,18 @@ class CountryProvider {
     }
   }
 
+  /// Search by calling code: `91`, `61`, `55`, `855`, `81`
+  /// ```dart
+  /// Future<List<Country>> getCountry(String name){
+  ///  try{
+  ///    List<Country> result = await CountryProvider.getCountryByCallingCode(91);
+  ///    return result;
+  ///   } catch(error) {
+  ///    print(error);
+  ///    return null;
+  ///  }
+  /// }
+  /// ```
   static Future<List<Country>> getCountryByCallingCode(int callingCode,
       {CountryFilter filter}) async {
     if (callingCode != null && callingCode > 0) {
@@ -214,6 +323,18 @@ class CountryProvider {
     }
   }
 
+  /// Search by continent: `Africa`, `Americas`, `Asia`, `Europe`, `Oceania`.
+  /// ```dart
+  /// Future<List<Country>> getCountry(String name){
+  ///  try{
+  ///    List<Country> result = await CountryProvider.getcountryByRegionalBloc("Asia");
+  ///    return result;
+  ///   } catch(error) {
+  ///    print(error);
+  ///    return null;
+  ///  }
+  /// }
+  /// ```
   static Future<List<Country>> getCountriesByContinent(String continentName,
       {CountryFilter filter}) async {
     if (continentName != null && continentName.isNotEmpty) {
@@ -236,6 +357,19 @@ class CountryProvider {
     }
   }
 
+
+ /// Search by regional bloc: `EU`, `EFTA`, `CARICOM`, `AU`, `USAN`, `EEU`, `AL`, `ASEAN` , `CAIS`, `CEFTA` , `NAFTA` , `SAARC`.
+  /// ```dart
+  /// Future<List<Country>> getCountry(String name){
+  ///  try{
+  ///    List<Country> result = await CountryProvider.getCountriesByContinent("ASEAN");
+  ///    return result;
+  ///   } catch(error) {
+  ///    print(error);
+  ///    return null;
+  ///  }
+  /// }
+  /// ```
   static Future<List<Country>> getcountryByRegionalBloc(String regiaonBlocName,
       {CountryFilter filter}) async {
     if (regiaonBlocName != null && regiaonBlocName.isNotEmpty) {
