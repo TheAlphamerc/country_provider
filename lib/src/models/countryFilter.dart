@@ -1,4 +1,4 @@
-class CountryFilter{
+class CountryFilter {
   bool isName;
   bool isCapital;
   bool isRegion;

@@ -32,6 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Country> _countryList;
   CountryFilter filter = CountryFilter();
   bool isLoading = false;
+ 
   void _searchCountry(int index) async {
     try {
       Navigator.pop(context);
@@ -102,35 +103,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  Widget _button(String title, String example, Function onPressed) {
-    return Container(
-      height: 60,
-      width: MediaQuery.of(context).size.width * .5,
-      margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-      child: MaterialButton(
-          color: Colors.blue[400],
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          onPressed: onPressed,
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  title,
-                  style: Theme.of(context).typography.dense.bodyText1,
-                ),
-                example.isEmpty
-                    ? SizedBox()
-                    : Text(
-                        example,
-                        style: Theme.of(context).typography.dense.bodyText1,
-                      ),
-              ])
-          // visualDensity: VisualDensity.standard,
-          ),
-    );
-  }
-
   void openSearchCountriesButton() async {
     await showModalBottomSheet(
         backgroundColor: Colors.transparent,
@@ -146,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
       },
       child: DraggableScrollableSheet(
         initialChildSize: .50,
-        minChildSize: .0,
+        minChildSize: .3,
         builder: (BuildContext context, ScrollController scrollcontroller) {
           return Container(
             padding: EdgeInsets.only(top: 10),
@@ -238,6 +210,35 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+ 
+  Widget _button(String title, String example, Function onPressed) {
+    return Container(
+      height: 60,
+      width: MediaQuery.of(context).size.width * .5,
+      margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+      child: MaterialButton(
+          color: Colors.blue[400],
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10))),
+          onPressed: onPressed,
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  title,
+                  style: Theme.of(context).typography.dense.bodyText1,
+                ),
+                example.isEmpty
+                    ? SizedBox()
+                    : Text(
+                        example,
+                        style: Theme.of(context).typography.dense.bodyText1,
+                      ),
+              ])
+          // visualDensity: VisualDensity.standard,
+          ),
+    );
+  }
 
   Widget _countryData(Country model) {
     return Container(
@@ -260,6 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: _title(model.name),
           children: <Widget>[
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Divider(color: Colors.grey.shade300, height: 1),
                 Padding(

@@ -176,7 +176,7 @@ class CountryProvider {
           Constants.countriesByCapitalCity +
           capitalName +
           filter.toFormattedUri;
-      ;
+      
       print(uri);
       var response = await _client.get(uri);
 
