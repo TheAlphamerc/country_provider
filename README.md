@@ -1,9 +1,13 @@
-# country_provider Flutter Plugin
+# country_provider Flutter Plugin ![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fthealphamerc) [![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/country_provider?style=social)](https://github.com/login?return_to=%2FTheAlphamerc%country_provider)  ![GitHub forks](https://img.shields.io/github/forks/TheAlphamerc/country_provider?style=social) 
 
-[![pub package](https://img.shields.io/pub/v/country_provider?color=blue)](https://pub.dev/packages/country_provider) ![GitHub last commit](https://img.shields.io/github/last-commit/Thealphamerc/country_provider) [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/Thealphamerc/flutter_plugin_filter_list) ![GitHub](https://img.shields.io/github/license/TheAlphamerc/country_provider) [![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/country_provider?style=social)](https://github.com/login?return_to=%2FTheAlphamerc%country_provider) ![GitHub forks](https://img.shields.io/github/forks/TheAlphamerc/country_provider?style=social)
+[![pub package](https://img.shields.io/pub/v/country_provider?color=blue)](https://pub.dev/packages/country_provider)  ![GitHub last commit](https://img.shields.io/github/last-commit/Thealphamerc/country_provider) ![GitHub pull requests](https://img.shields.io/github/issues-pr/TheAlphamerc/country_provider) ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/Thealphamerc/country_provider)   ![GitHub issues](https://img.shields.io/github/issues-raw/Thealphamerc/country_provider) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/thealphamerc/country_provider) [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/Thealphamerc/country_provider) 
 
 
 Country Provider is a flutter library wrapper around the API provided by REST Countries https://restcountries.eu (Get information about countries via a RESTful API)
+
+
+## Download App ![GitHub All Releases](https://img.shields.io/github/downloads/Thealphamerc/country_provider/total?color=green)
+<a href="https://github.com/TheAlphamerc/country_provider/releases/download/v0.0.1/app-release.apk"><img src="https://playerzon.com/asset/download.png" width="200"></img></a>
 
 ## Getting Started
 ### 1. Add library to your pubspec.yaml

@@ -1,6 +1,6 @@
 name: country_provider
 description: The plugin provides several methods to fetch countries info, Apply filter, and perform search operations.
-version: 0.0.1
+version: 1.0.0
 homepage: https://github.com/TheAlphamerc/country_provider
 
 environment:
