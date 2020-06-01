@@ -7,7 +7,7 @@ Country Provider is a flutter library wrapper around the API provided by REST Co
 
 
 ## Download App ![GitHub All Releases](https://img.shields.io/github/downloads/Thealphamerc/country_provider/total?color=green)
-<a href="https://github.com/TheAlphamerc/country_provider/releases/download/v0.0.1/app-release.apk"><img src="https://playerzon.com/asset/download.png" width="200"></img></a>
+<a href="https://github.com/TheAlphamerc/country_provider/releases/download/v1.0.1/app-release.apk"><img src="https://playerzon.com/asset/download.png" width="200"></img></a>
 
 ## Getting Started
 ### 1. Add library to your pubspec.yaml
