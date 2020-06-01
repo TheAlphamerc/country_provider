@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Country> _countryList;
   CountryFilter filter = CountryFilter();
   bool isLoading = false;
- 
+
   void _searchCountry(int index) async {
     try {
       Navigator.pop(context);
@@ -210,7 +210,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
- 
+
   Widget _button(String title, String example, Function onPressed) {
     return Container(
       height: 60,
@@ -270,22 +270,47 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      _rowData("Capital: ", model.capital),
-                      _rowData("Region: ", model.region),
-                      _rowData("Alpha2 Code: ", model.alpha2Code),
-                      _rowData("Alpha3 Code: ", model.alpha3Code),
-                      _rowData("Area: ", model.area.toString()),
-                      _rowData("Demonym: ", model.demonym),
-                      _rowData("Timezone: ", model.timezones?.first),
-                      _rowData("Calling code: ", model.callingCodes?.first),
-                      _showListData("Borders: ", model.borders),
-                      _showListData("Alt Spellings: ", model.altSpellings),
-                      _showListData("Currency Name: ",
+                      _rowData("Capital", model.capital),
+                      _rowData("Region", model.region),
+                      _rowData("Alpha2 Code", model.alpha2Code),
+                      _rowData("Alpha3 Code", model.alpha3Code),
+                      _rowData("Area", model.area.toString()),
+                      _showListData("Domain",
+                          model.topLevelDomain.map((e) => e).toList()),
+                      _rowData("Demonym", model.demonym),
+                      _rowData("Timezone", model.timezones?.first),
+                      _rowData("Calling code", model.callingCodes?.first),
+                      _rowData("Numeric Code", model.numericCode),
+                      _rowData("CIOS", model.cioc),
+                      _showListData("Currency Name",
                           model.currencies?.map((x) => x?.name)?.toList()),
-                      _showListData("Currency code: ",
+                      _showListData("Currency code",
                           model.currencies?.map((x) => x?.code)?.toList()),
-                      _showListData("Currency Symbol: ",
+                      _showListData("Currency Symbol",
                           model.currencies?.map((x) => x?.symbol)?.toList()),
+                      _showListData("Lat Long",
+                          model.latlng.map((e) => e.toString()).toList()),
+                      _showListData("Language",
+                          model.languages.map((e) => e.name).toList()),
+                      _showListData("Lang Naiive Name",
+                          model.languages.map((e) => e.nativeName).toList()),
+                      _showListData("Lang iso6391 Code",
+                          model.languages.map((e) => e.iso6391).toList()),
+                      _showListData("Lang iso6392 Code",
+                          model.languages.map((e) => e.iso6392).toList()),
+                      _showListData("Regional Blocs",
+                          model.regionalBlocs.map((e) => e.name).toList()),
+                      _showListData("Regional Blocs Aacronym",
+                          model.regionalBlocs.map((e) => e.acronym).toList()),
+                      _showListData("Borders", model.borders),
+                      _showListData("Alt Spellings", model.altSpellings),
+                      _showListData(
+                          "Name Translations",
+                          model.translations
+                              .toJson()
+                              .cast<String, String>()
+                              .values
+                              .toList()),
                     ],
                   ),
                 ),
@@ -307,29 +332,33 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _rowData(String text, String value) {
     return value == 'null' || value == null
         ? SizedBox()
-        : Container(
-            padding: EdgeInsets.symmetric(vertical: 4),
-            child: RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: text,
+        : materialWidget(
+            Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 3,
+                  child: Text(
+                    text,
                     style: Theme.of(context)
                         .typography
                         .dense
                         .button
                         .copyWith(color: Colors.black),
                   ),
-                  TextSpan(
-                    text: value,
+                ),
+                Text(":  "),
+                Expanded(
+                  flex: 4,
+                  child: Text(
+                    value,
                     style: Theme.of(context)
                         .typography
                         .black
                         .bodyText1
                         .copyWith(color: Colors.black.withOpacity(.7)),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           );
   }
@@ -339,28 +368,57 @@ class _MyHomePageState extends State<MyHomePage> {
       return SizedBox.shrink();
     }
     List<Widget> children = [
-      Text(
-        title,
-        style: Theme.of(context)
-            .typography
-            .dense
-            .button
-            .copyWith(color: Colors.black),
-      ),
+      Expanded(
+        flex: 3,
+        child: Text(
+          title,
+          style: Theme.of(context)
+              .typography
+              .dense
+              .button
+              .copyWith(color: Colors.black),
+        ),
+      )
     ];
-    children.addAll(list.map((e) => Padding(
-          padding: EdgeInsets.only(right: 8),
-          child: Text(e ?? ""),
-        )));
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Wrap(
-            children: children.toList(),
+    children.add(Text(":  "));
+    children.add(
+      Expanded(
+        flex: 4,
+        child: Container(
+          child: Wrap(
+            children: list.map((e) {
+              if (list.last != e) {
+                e = "$e, ";
+              }
+
+              return Padding(
+                padding: EdgeInsets.only(right: 8),
+                child: Text(e ?? ""),
+              );
+            }).toList(),
           ),
-        ],
+        ),
+      ),
+    );
+    return materialWidget(
+      Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: children),
+    );
+  }
+
+  Widget materialWidget(Widget child) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 8),
+      child: Material(
+        shape: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black.withOpacity(.08)),
+            borderRadius: BorderRadius.all(Radius.circular(2))),
+        child: Container(
+            margin: EdgeInsets.symmetric(vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: child),
       ),
     );
   }

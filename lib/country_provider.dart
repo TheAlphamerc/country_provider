@@ -219,7 +219,7 @@ class CountryProvider {
     }
   }
 
-  /// Search by ISO 639-1 language code: `jpn`, `en`, `hin`, `ru`, 
+  /// Search by ISO 639-1 language code: `jpn`, `en`, `hin`, `ru`,
   /// ```dart
   /// Future<List<Country>> getCountry(String name){
   ///  try{
@@ -357,8 +357,7 @@ class CountryProvider {
     }
   }
 
-
- /// Search by regional bloc: `EU`, `EFTA`, `CARICOM`, `AU`, `USAN`, `EEU`, `AL`, `ASEAN` , `CAIS`, `CEFTA` , `NAFTA` , `SAARC`.
+  /// Search by regional bloc: `EU`, `EFTA`, `CARICOM`, `AU`, `USAN`, `EEU`, `AL`, `ASEAN` , `CAIS`, `CEFTA` , `NAFTA` , `SAARC`.
   /// ```dart
   /// Future<List<Country>> getCountry(String name){
   ///  try{
