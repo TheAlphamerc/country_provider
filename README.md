@@ -138,7 +138,7 @@ var countries = await CountryProvider.getAllCountries(filter: CountryFilter(isNa
 var countries = await CountryProvider.getAllCountries(filter: CountryFilter(isName: true,isCapital:true,isAlpha2Code:true,isAlpha3Code: true));
 
 
-// Fell free to aplly filters 🤓
+// Feel free to aplly filters 🤓
 ```
 
 Default language for country name is English, but you can also get the name in other languages such as: `de`(German language),  `es`(Spanish language), `fr`(French language),  `ja`(Japanese language), `it`(Italian language), `br`(Breton language), `pt`(Portuguese language), `nl`(Dutch language), `hr`(Croatian language) and `fa`(Persian language).
