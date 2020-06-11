@@ -1,4 +1,4 @@
-## [1.0.0] - 30 May 2020
+## [1.0.1] - 01 Jun 2020
 
 * Added Domain, Numeric code, CISO, Lat long, Language name code and symbol
 * Added REgional blocks name, Countries name translation
