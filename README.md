@@ -65,7 +65,7 @@ Country result = await CountryProvider.getCountryByCode("Ind")?.first;
 
 ```dart
 // Search by list of ISO 3166-1 2-letter or 3-letter country codes
-List<Country> result = CountryProvider.getCountriesByListOfCodes(["Ind", "col", "ru"]);
+List<Country> result =await CountryProvider.getCountriesByListOfCodes(["Ind", "col", "ru"]);
 ```
 
 - Search by ISO 4217 currency code.
@@ -286,6 +286,7 @@ I welcome and encourage all pull requests. It usually will take me within 24-48 
 > If you found this project helpful or you learned something from the source code and want to thank me, consider buying me a cup of :coffee:
 >
 > * [PayPal](https://www.paypal.me/TheAlphamerc/)
+> You can also nominate me for Github Star developer program https://stars.github.com/nominate
 
 
 
