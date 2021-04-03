@@ -29,7 +29,7 @@ class CountryProvider {
     var uri =
         "$_baseUrl" + Constants.allCountrySiffixUri + filter.toFormattedUri;
     print(uri);
-    var response = await _client.get(uri);
+    var response = await _client.get(Uri.parse(uri));
 
     if (response.statusCode == 200) {
       var countries = List<Country>.from(
@@ -62,7 +62,7 @@ class CountryProvider {
       var uri =
           "$_baseUrl" + Constants.countryByName + name + filter.toFormattedUri;
       print(uri);
-      var response = await _client.get(uri);
+      var response = await _client.get(Uri.parse(uri));
 
       if (response.statusCode == 200) {
         var countries = List<Country>.from(
@@ -103,7 +103,7 @@ class CountryProvider {
               ? filter.toFormattedUri.substring(1, filter.toFormattedUri.length)
               : '');
       print(uri);
-      var response = await _client.get(uri);
+      var response = await _client.get(Uri.parse(uri));
 
       if (response.statusCode == 200) {
         var countries = List<Country>.from(
@@ -135,7 +135,7 @@ class CountryProvider {
       var uri =
           "$_baseUrl" + Constants.countryByCode + code + filter.toFormattedUri;
       print(uri);
-      var response = await _client.get(uri);
+      var response = await _client.get(Uri.parse(uri));
 
       if (response.statusCode == 200) {
         var country = Country.fromJson(jsonDecode(response.body));
@@ -171,7 +171,7 @@ class CountryProvider {
               ? filter.toFormattedUri.substring(1, filter.toFormattedUri.length)
               : '');
       print(uri);
-      var response = await _client.get(uri);
+      var response = await _client.get(Uri.parse(uri));
 
       if (response.statusCode == 200) {
         var countries = List<Country>.from(jsonDecode(response.body)
@@ -205,7 +205,7 @@ class CountryProvider {
           currencyCode +
           filter.toFormattedUri;
       print(uri);
-      var response = await _client.get(uri);
+      var response = await _client.get(Uri.parse(uri));
 
       if (response.statusCode == 200) {
         var countries = List<Country>.from(jsonDecode(response.body)
@@ -240,7 +240,7 @@ class CountryProvider {
           languageCode.toFormattedString +
           filter.toFormattedUri;
       print(uri);
-      var response = await _client.get(uri);
+      var response = await _client.get(Uri.parse(uri));
 
       if (response.statusCode == 200) {
         var countries = List<Country>.from(jsonDecode(response.body)
@@ -275,7 +275,7 @@ class CountryProvider {
           filter.toFormattedUri;
 
       print(uri);
-      var response = await _client.get(uri);
+      var response = await _client.get(Uri.parse(uri));
 
       if (response.statusCode == 200) {
         var countries = List<Country>.from(jsonDecode(response.body)
@@ -309,7 +309,7 @@ class CountryProvider {
           callingCode.toString() +
           filter.toFormattedUri;
       print(uri);
-      var response = await _client.get(uri);
+      var response = await _client.get(Uri.parse(uri));
 
       if (response.statusCode == 200) {
         var countries = List<Country>.from(jsonDecode(response.body)
@@ -343,7 +343,7 @@ class CountryProvider {
           continentName +
           filter.toFormattedUri;
       print(uri);
-      var response = await _client.get(uri);
+      var response = await _client.get(Uri.parse(uri));
 
       if (response.statusCode == 200) {
         var countries = List<Country>.from(jsonDecode(response.body)
@@ -377,7 +377,7 @@ class CountryProvider {
           regiaonBlocName +
           filter.toFormattedUri;
       print(uri);
-      var response = await _client.get(uri);
+      var response = await _client.get(Uri.parse(uri));
 
       if (response.statusCode == 200) {
         var countries = List<Country>.from(jsonDecode(response.body)
