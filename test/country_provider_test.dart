@@ -1,7 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:country_provider/country_provider.dart';
-
 void main() {
   test('adds one to input values', () {
     // final calculator = Calculator();

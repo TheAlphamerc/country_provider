@@ -1,4 +1,4 @@
-import 'package:country_provider/src/models/countryFilter.dart';
+import 'package:country_provider/src/country_provider_impl.dart';
 
 extension formattedString on List<String> {
   String get toFormattedString {

@@ -1,3 +1,5 @@
+part of '../country_provider_impl.dart';
+
 class CountryFilter {
   bool isName;
   bool isCapital;
