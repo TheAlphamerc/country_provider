@@ -20,16 +20,16 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Country> _countryList;
+  List<Country>? _countryList;
   CountryFilter filter = CountryFilter();
   bool isLoading = false;
 
@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
           break;
         case 1:
           _countryList = await CountryProvider.getCountriesByName("Ameri",
-              filter: CountryFilter());
+              filter: CountryFilter(isName: true));
           break;
         case 2:
           _countryList = [
@@ -96,8 +96,6 @@ class _MyHomePageState extends State<MyHomePage> {
       }
       isLoading = false;
       setState(() {});
-
-      print(_countryList.first.name);
     } catch (error) {
       print(error);
     }
@@ -148,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: Theme.of(context)
                         .typography
                         .dense
-                        .headline6
+                        .headline6!
                         .copyWith(color: Colors.black),
                   ),
                 ),
@@ -211,7 +209,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _button(String title, String example, Function onPressed) {
+  Widget _button(String title, String example, VoidCallback onPressed) {
     return Container(
       height: 60,
       width: MediaQuery.of(context).size.width * .5,
@@ -258,7 +256,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Theme(
         data: ThemeData(dividerColor: Colors.transparent),
         child: ExpansionTile(
-          title: _title(model.name),
+          title: _title(model.name!),
           children: <Widget>[
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -276,39 +274,39 @@ class _MyHomePageState extends State<MyHomePage> {
                       _rowData("Alpha3 Code", model.alpha3Code),
                       _rowData("Area", model.area.toString()),
                       _showListData("Domain",
-                          model.topLevelDomain.map((e) => e).toList()),
+                          model.topLevelDomain?.map((e) => e).toList()),
                       _rowData("Demonym", model.demonym),
                       _rowData("Timezone", model.timezones?.first),
                       _rowData("Calling code", model.callingCodes?.first),
                       _rowData("Numeric Code", model.numericCode),
                       _rowData("CIOS", model.cioc),
                       _showListData("Currency Name",
-                          model.currencies?.map((x) => x?.name)?.toList()),
+                          model.currencies?.map((x) => x.name).toList()),
                       _showListData("Currency code",
-                          model.currencies?.map((x) => x?.code)?.toList()),
+                          model.currencies?.map((x) => x.code).toList()),
                       _showListData("Currency Symbol",
-                          model.currencies?.map((x) => x?.symbol)?.toList()),
+                          model.currencies?.map((x) => x.symbol).toList()),
                       _showListData("Lat Long",
-                          model.latlng.map((e) => e.toString()).toList()),
+                          model.latlng?.map((e) => e.toString()).toList()),
                       _showListData("Language",
-                          model.languages.map((e) => e.name).toList()),
+                          model.languages?.map((e) => e.name).toList()),
                       _showListData("Lang Naiive Name",
-                          model.languages.map((e) => e.nativeName).toList()),
+                          model.languages?.map((e) => e.nativeName).toList()),
                       _showListData("Lang iso6391 Code",
-                          model.languages.map((e) => e.iso6391).toList()),
+                          model.languages?.map((e) => e.iso6391).toList()),
                       _showListData("Lang iso6392 Code",
-                          model.languages.map((e) => e.iso6392).toList()),
+                          model.languages?.map((e) => e.iso6392).toList()),
                       _showListData("Regional Blocs",
-                          model.regionalBlocs.map((e) => e.name).toList()),
+                          model.regionalBlocs?.map((e) => e.name).toList()),
                       _showListData("Regional Blocs Aacronym",
-                          model.regionalBlocs.map((e) => e.acronym).toList()),
+                          model.regionalBlocs?.map((e) => e.acronym).toList()),
                       _showListData("Borders", model.borders),
                       _showListData("Alt Spellings", model.altSpellings),
                       _showListData(
                           "Name Translations",
                           model.translations
-                              .toJson()
-                              .cast<String, String>()
+                              ?.toJson()
+                              .cast<String, String?>()
                               .values
                               .toList()),
                     ],
@@ -322,14 +320,14 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _title(String text) {
+  Widget _title(String? text) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 4),
-      child: Text(text),
+      child: Text(text ?? ""),
     );
   }
 
-  Widget _rowData(String text, String value) {
+  Widget _rowData(String text, String? value) {
     return value == 'null' || value == null
         ? SizedBox()
         : materialWidget(
@@ -342,7 +340,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: Theme.of(context)
                         .typography
                         .dense
-                        .button
+                        .button!
                         .copyWith(color: Colors.black),
                   ),
                 ),
@@ -354,7 +352,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: Theme.of(context)
                         .typography
                         .black
-                        .bodyText1
+                        .bodyText1!
                         .copyWith(color: Colors.black.withOpacity(.7)),
                   ),
                 )
@@ -363,7 +361,7 @@ class _MyHomePageState extends State<MyHomePage> {
           );
   }
 
-  Widget _showListData(String title, List<String> list) {
+  Widget _showListData(String title, List<String?>? list) {
     if (list == null || list.isEmpty) {
       return SizedBox.shrink();
     }
@@ -375,7 +373,7 @@ class _MyHomePageState extends State<MyHomePage> {
           style: Theme.of(context)
               .typography
               .dense
-              .button
+              .button!
               .copyWith(color: Colors.black),
         ),
       )
@@ -427,7 +425,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title!),
       ),
       backgroundColor: Color(0xfff1f1f1),
       floatingActionButton: FloatingActionButton(
@@ -438,22 +436,18 @@ class _MyHomePageState extends State<MyHomePage> {
         alignment: Alignment.center,
         child: isLoading
             ? Center(child: CircularProgressIndicator())
-            : _countryList != null && _countryList.isNotEmpty
+            : _countryList != null && _countryList!.isNotEmpty
                 ? ListView.builder(
-                    itemCount: _countryList.length,
+                    itemCount: _countryList!.length,
                     itemBuilder: (context, index) {
-                      if (_countryList[index] != null) {
-                        return _countryData(_countryList[index]);
-                      } else {
-                        return SizedBox.shrink();
-                      }
+                      return _countryData(_countryList![index]);
                     })
                 : Text(
                     "Click search buton to select option",
                     style: Theme.of(context)
                         .typography
                         .dense
-                        .bodyText1
+                        .bodyText1!
                         .copyWith(color: Colors.black),
                   ),
       ),

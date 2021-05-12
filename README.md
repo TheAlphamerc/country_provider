@@ -15,7 +15,7 @@ Country Provider is a flutter library wrapper around the API provided by REST Co
 ```yaml
 
 dependencies:
-  country_provider: ^0.0.1
+  country_provider: ^0.0.2
 
 ```
 
@@ -35,14 +35,14 @@ Each method return a `List` of [`Country`](https://github.com/TheAlphamerc/count
 
 ```dart
 // Get all countries
-List<Country> countries = await CountryProvider.getAllCountries();
+List<Country>? countries = await CountryProvider.getAllCountries();
 ```
 
 - Search by country name. It can be the native name or partial name.
 
 ```dart
 // Search by country name
-List<Country> result = await CountryProvider.getCountriesByName("Ameri");
+List<Country>? result = await CountryProvider.getCountriesByName("Ameri");
 ```
 
 If partial name, this method could return a list of countries. Else a List of one element.
@@ -65,21 +65,21 @@ Country result = await CountryProvider.getCountryByCode("Ind")?.first;
 
 ```dart
 // Search by list of ISO 3166-1 2-letter or 3-letter country codes
-List<Country> result =await CountryProvider.getCountriesByListOfCodes(["Ind", "col", "ru"]);
+List<Country>? result =await CountryProvider.getCountriesByListOfCodes(["Ind", "col", "ru"]);
 ```
 
 - Search by ISO 4217 currency code.
 
 ```dart
 // Search by ISO 4217 currency code
-List<Country> result = await CountryProvider.getCountryByCurrencyCode("Inr")
+List<Country>? result = await CountryProvider.getCountryByCurrencyCode("Inr")
 ```
 
 - Search by ISO 639-1 language code.
 
 ```dart
 // Search by ISO 639-1 language code
-List<Country> result = await CountryProvider.getCountriesByLanguageCode(["Hin","en",]);
+List<Country>? result = await CountryProvider.getCountriesByLanguageCode(["Hin","en",]);
 ```
 
 -  Search by capital city.
@@ -95,21 +95,21 @@ You can use `var` instead of explicit types. I use explicit types to show you th
 
 ```dart
 // Search by calling code
-List<Country> result = await CountryProvider.getCountryByCallingCode(91);
+List<Country>? result = await CountryProvider.getCountryByCallingCode(91);
 ```
 
 -  Search by continent: Africa, Americas, Asia, Europe, Oceania.
 
 ```dart
 //  Search by continent: Africa, Americas, Asia, Europe, Oceania
-List<Country> result = await CountryProvider.getcountryByRegionalBloc("Asia");
+List<Country>? result = await CountryProvider.getcountryByRegionalBloc("Asia");
 ```
 
 - Search by regional bloc: EU, EFTA, CARICOM, AU, USAN, EEU, AL, ASEAN , CAIS, CEFTA , NAFTA , SAARC.
 
 ```dart
 //  Search by regional bloc
-List<Country> result = await CountryProvider.getCountriesByContinent("ASEAN");
+List<Country>? result = await CountryProvider.getCountriesByContinent("ASEAN");
 ```
 
 **EU** (European Union), **EFTA** (European Free Trade Association), **CARICOM** (Caribbean Community), **PA** (Pacific Alliance), **AU** (African Union), **USAN** (Union of South American Nations), **EEU** (Eurasian Economic Union), **AL** (Arab League), **ASEAN** (Association of Southeast Asian Nations), **CAIS** (Central American Integration System), **CEFTA** (Central European Free Trade Agreement), **NAFTA** (North American Free Trade Agreement), **SAARC** (South Asian Association for Regional Cooperation).
@@ -121,15 +121,15 @@ To get filtered country data pass [CountryFilter](https://github.com/TheAlphamer
 ```dart
 // Get all countries name only 
 var countries = await CountryProvider.getAllCountries(filter: CountryFilter(isName: true));
-List<string> countriesInSpanish = countries.map((e) => e.name).toList();
+List<String> countriesInSpanish = countries.map((e) => e.name).toList();
 
 // Get all countries name only in Spanish
 var countries = await CountryProvider.getAllCountries(filter: CountryFilter(isName: true));
-List<string> countriesInSpanish = countries.map((e) => e.translations.es).toList();
+List<String> countriesInSpanish = countries.map((e) => e.translations.es).toList();
 
 // Get Europe countries in French language
 var europeCountries = await CountryProvider.getcountryByRegionalBloc("Europe",filter: CountryFilter(isName: true));
-List<string> europeCountriesInFrench = europeCountries.map((e) => e.translations.fr).toList();
+List<String> europeCountriesInFrench = europeCountries.map((e) => e.translations.?fr).toList();
 
 // Get all countries name with their capital city only
 var countries = await CountryProvider.getAllCountries(filter: CountryFilter(isName: true,isCapital:true));
@@ -150,76 +150,76 @@ Default language for country name is English, but you can also get the name in o
 class Country
 {	  
     // Get Country name
-    String name;
+    String? name;
 
     // Gets  Top Level Domain
-    List<String> topLevelDomain;
+    List<String>? topLevelDomain;
     
     // Gets Alpha2 Code
-    String alpha2Code;
+    String? alpha2Code;
     
     // Gets Alpha3 Code
-    String alpha3Code;
+    String? alpha3Code;
     
     // Gets Calling Code
-    List<String> callingCodes;
+    List<String>? callingCodes;
     
     // Gets Capital City
-    String capital;
+    String? capital;
     
-    // Get AltSpelling
-    List<String> altSpellings;
+    // Get Alt Spelling
+    List<String>? altSpellings;
     
     // Get Region
-    String region;
+    String? region;
     
-    // Get SubDomain
-    String subregion;
+    // Get Sub region
+    String? subregion;
     
     // Get Population
-    int population;
+    int? population;
     
     // Get Latlng(Latitude and Longitude)
-    List<double> latlng;
+    List<double>? latlng;
     
     // Get Demonym
-    String demonym;
+    String? demonym;
     
     // Get Area
-    double area;
+    double? area;
     
     // Get Gini
-    double gini;
+    double? gini;
     
     // Get Timezone
-    List<String> timezones;
+    List<String>? timezones;
     
     // Get Borders
-    List<String> borders;
+    List<String>? borders;
     
     // Get Native Name
-    String nativeName;
+    String? nativeName;
     
     // Get Numeric Code
-    String numericCode;
+    String? numericCode;
     
     // Get Currencies
-    List<Currency> currencies;
+    List<Currency>? currencies;
     
      // Get Languages
-    List<Language> languages;
+    List<Language>? languages;
     
     // Gets Translations
-    Translations translations;
+    Translations? translations;
     
     // Get Flag
-    String flag;
+    String? flag;
     
     // Get Regional Blocs
-    List<RegionalBloc> regionalBlocs;
+    List<RegionalBloc>? regionalBlocs;
     
     // Get  Cioc(International Olympic Committee Code)
-    String cioc;
+    String ?cioc;
 }
 ```
 ## CountryFilter Class 
@@ -266,13 +266,12 @@ class CountryFilter{
 Thanks to Fayder Florez for developing [REST Countries API](https://github.com/fayder/restcountries).
 
 
-## Flutter plugins
-Plugin Name        | Stars        
-:-------------------------|-------------------------
-|[Empty widget](https://github.com/TheAlphamerc/empty_widget) |![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/empty_widget?style=social)
-|[Add Thumbnail](https://github.com/TheAlphamerc/flutter_plugin_add_thumbnail) |![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/flutter_plugin_add_thumbnail?style=social)
-|[Filter List Widget](https://github.com/TheAlphamerc/flutter_plugin_filter_list) |![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/flutter_plugin_filter_list?style=social)
-
+## Other Flutter packages
+ Name        | Stars        | Pub |
+:-------------------------|------------------------- | ------------------------- |
+|[Empty widget](https://github.com/TheAlphamerc/empty_widget) |[![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/empty_widget?style=social)](https://github.com/login?return_to=https://github.com/TheAlphamerc/empty_widget) | [![pub package](https://img.shields.io/pub/v/empty_widget?color=blue)](https://pub.dev/packages/empty_widget) |
+|[Add Thumbnail](https://github.com/TheAlphamerc/flutter_plugin_add_thumbnail) |[![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/flutter_plugin_add_thumbnail?style=social)](https://github.com/login?return_to=https://github.com/TheAlphamerc/flutter_plugin_add_thumbnail) | [![pub package](https://img.shields.io/pub/v/add_thumbnail?color=blue)](https://pub.dev/packages/add_thumbnail) |
+|[Filter List](https://github.com/TheAlphamerc/flutter_plugin_filter_list) |[![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/flutter_plugin_filter_list?style=social)](https://github.com/TheAlphamerc/flutter_plugin_filter_list) | [![pub package](https://img.shields.io/pub/v/filter_list?color=blue)](https://pub.dev/packages/filter_list) |
 
 ## Pull Requests
 
@@ -285,9 +284,14 @@ I welcome and encourage all pull requests. It usually will take me within 24-48 
 
 > If you found this project helpful or you learned something from the source code and want to thank me, consider buying me a cup of :coffee:
 >
+
+> * <a href="https://www.buymeacoffee.com/thealphamerc"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="30"></a>
 > * [PayPal](https://www.paypal.me/TheAlphamerc/)
 
-> You can also nominate me for Github Star developer program https://stars.github.com/nominate
+
+## Visitors Count
+
+<img align="left" src = "https://profile-counter.glitch.me/country_provider/count.svg" alt ="Loading">
 
 
 

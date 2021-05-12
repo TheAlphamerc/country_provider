@@ -1,30 +1,69 @@
 import 'dart:convert';
 
 class Country {
-  String name;
-  List<String> topLevelDomain;
-  String alpha2Code;
-  String alpha3Code;
-  List<String> callingCodes;
-  String capital;
-  List<String> altSpellings;
-  String region;
-  String subregion;
-  int population;
-  List<double> latlng;
-  String demonym;
-  double area;
-  double gini;
-  List<String> timezones;
-  List<String> borders;
-  String nativeName;
-  String numericCode;
-  List<Currency> currencies;
-  List<Language> languages;
-  Translations translations;
-  String flag;
-  List<RegionalBloc> regionalBlocs;
-  String cioc;
+  ///  Country name
+  String? name;
+
+  /// s  Top Level Domain
+  List<String>? topLevelDomain;
+
+  /// s Alpha2 Code
+  String? alpha2Code;
+
+  ///  Alpha3 Code
+  String? alpha3Code;
+
+  ///  Calling Code
+  List<String>? callingCodes;
+
+  ///  Capital City
+  String? capital;
+
+  ///  Alt spelling
+  List<String>? altSpellings;
+
+  ///  Region
+  String? region;
+
+  ///  Sub region
+  String? subregion;
+
+  ///  Population
+  int? population;
+
+  ///  Latlng(Latitude and Longitude)
+  List<double>? latlng;
+
+  ///  Demonym
+  String? demonym;
+
+  /// area of country
+  double? area;
+  double? gini;
+
+  /// Timezone exists in country
+  List<String>? timezones;
+
+  /// List of country border
+  List<String>? borders;
+
+  /// Native name of country
+  String? nativeName;
+
+  /// Country code
+  String? numericCode;
+
+  /// Country's currency
+  List<Currency>? currencies;
+
+  /// Country's language'
+  List<Language>? languages;
+  Translations? translations;
+  String? flag;
+  List<RegionalBloc>? regionalBlocs;
+
+  ///   Cioc(International Olympic Committee Code)
+  String? cioc;
 
   Country({
     this.name,
@@ -57,7 +96,7 @@ class Country {
 
   String toRawJson() => json.encode(toJson());
 
-  factory Country.fromJson(Map<String, dynamic> json) => Country(
+  factory Country.fromJson(Map<String, dynamic?> json) => Country(
         name: json["name"] == null ? null : json["name"],
         topLevelDomain: json["topLevelDomain"] == null
             ? null
@@ -107,54 +146,54 @@ class Country {
         cioc: json["cioc"] == null ? null : json["cioc"],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic?> toJson() => {
         "name": name == null ? null : name,
         "topLevelDomain": topLevelDomain == null
             ? null
-            : List<dynamic>.from(topLevelDomain.map((x) => x)),
+            : List<dynamic>.from(topLevelDomain!.map((x) => x)),
         "alpha2Code": alpha2Code == null ? null : alpha2Code,
         "alpha3Code": alpha3Code == null ? null : alpha3Code,
         "callingCodes": callingCodes == null
             ? null
-            : List<dynamic>.from(callingCodes.map((x) => x)),
+            : List<dynamic>.from(callingCodes!.map((x) => x)),
         "capital": capital == null ? null : capital,
         "altSpellings": altSpellings == null
             ? null
-            : List<dynamic>.from(altSpellings.map((x) => x)),
+            : List<dynamic>.from(altSpellings!.map((x) => x)),
         "region": region == null ? null : region,
         "subregion": subregion == null ? null : subregion,
         "population": population == null ? null : population,
         "latlng":
-            latlng == null ? null : List<dynamic>.from(latlng.map((x) => x)),
+            latlng == null ? null : List<dynamic>.from(latlng!.map((x) => x)),
         "demonym": demonym == null ? null : demonym,
         "area": area == null ? null : area,
         "gini": gini == null ? null : gini,
         "timezones": timezones == null
             ? null
-            : List<dynamic>.from(timezones.map((x) => x)),
+            : List<dynamic>.from(timezones!.map((x) => x)),
         "borders":
-            borders == null ? null : List<dynamic>.from(borders.map((x) => x)),
+            borders == null ? null : List<dynamic>.from(borders!.map((x) => x)),
         "nativeName": nativeName == null ? null : nativeName,
         "numericCode": numericCode == null ? null : numericCode,
         "currencies": currencies == null
             ? null
-            : List<dynamic>.from(currencies.map((x) => x.toJson())),
+            : List<dynamic>.from(currencies!.map((x) => x.toJson())),
         "languages": languages == null
             ? null
-            : List<dynamic>.from(languages.map((x) => x.toJson())),
-        "translations": translations == null ? null : translations.toJson(),
+            : List<dynamic>.from(languages!.map((x) => x.toJson())),
+        "translations": translations == null ? null : translations!.toJson(),
         "flag": flag == null ? null : flag,
         "regionalBlocs": regionalBlocs == null
             ? null
-            : List<dynamic>.from(regionalBlocs.map((x) => x.toJson())),
+            : List<dynamic>.from(regionalBlocs!.map((x) => x.toJson())),
         "cioc": cioc == null ? null : cioc,
       };
 }
 
 class Currency {
-  String code;
-  String name;
-  String symbol;
+  String? code;
+  String? name;
+  String? symbol;
 
   Currency({
     this.code,
@@ -167,7 +206,7 @@ class Currency {
 
   String toRawJson() => json.encode(toJson());
 
-  factory Currency.fromJson(Map<String, dynamic> json) => Currency(
+  factory Currency.fromJson(Map<String, dynamic?> json) => Currency(
         code: json["code"] == null ? null : json["code"],
         name: json["name"] == null ? null : json["name"],
         symbol: json["symbol"] == null ? null : json["symbol"],
@@ -181,10 +220,10 @@ class Currency {
 }
 
 class Language {
-  String iso6391;
-  String iso6392;
-  String name;
-  String nativeName;
+  String? iso6391;
+  String? iso6392;
+  String? name;
+  String? nativeName;
 
   Language({
     this.iso6391,
@@ -198,14 +237,14 @@ class Language {
 
   String toRawJson() => json.encode(toJson());
 
-  factory Language.fromJson(Map<String, dynamic> json) => Language(
+  factory Language.fromJson(Map<String, dynamic?> json) => Language(
         iso6391: json["iso639_1"] == null ? null : json["iso639_1"],
         iso6392: json["iso639_2"] == null ? null : json["iso639_2"],
         name: json["name"] == null ? null : json["name"],
         nativeName: json["nativeName"] == null ? null : json["nativeName"],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic?> toJson() => {
         "iso639_1": iso6391 == null ? null : iso6391,
         "iso639_2": iso6392 == null ? null : iso6392,
         "name": name == null ? null : name,
@@ -214,10 +253,10 @@ class Language {
 }
 
 class RegionalBloc {
-  String acronym;
-  String name;
-  List<dynamic> otherAcronyms;
-  List<dynamic> otherNames;
+  String? acronym;
+  String? name;
+  List<dynamic>? otherAcronyms;
+  List<dynamic>? otherNames;
 
   RegionalBloc({
     this.acronym,
@@ -231,7 +270,7 @@ class RegionalBloc {
 
   String toRawJson() => json.encode(toJson());
 
-  factory RegionalBloc.fromJson(Map<String, dynamic> json) => RegionalBloc(
+  factory RegionalBloc.fromJson(Map<String, dynamic?> json) => RegionalBloc(
         acronym: json["acronym"] == null ? null : json["acronym"],
         name: json["name"] == null ? null : json["name"],
         otherAcronyms: json["otherAcronyms"] == null
@@ -247,24 +286,24 @@ class RegionalBloc {
         "name": name == null ? null : name,
         "otherAcronyms": otherAcronyms == null
             ? null
-            : List<dynamic>.from(otherAcronyms.map((x) => x)),
+            : List<dynamic>.from(otherAcronyms!.map((x) => x)),
         "otherNames": otherNames == null
             ? null
-            : List<dynamic>.from(otherNames.map((x) => x)),
+            : List<dynamic>.from(otherNames!.map((x) => x)),
       };
 }
 
 class Translations {
-  String de;
-  String es;
-  String fr;
-  String ja;
-  String it;
-  String br;
-  String pt;
-  String nl;
-  String hr;
-  String fa;
+  String? de;
+  String? es;
+  String? fr;
+  String? ja;
+  String? it;
+  String? br;
+  String? pt;
+  String? nl;
+  String? hr;
+  String? fa;
 
   Translations({
     this.de,
@@ -284,7 +323,7 @@ class Translations {
 
   String toRawJson() => json.encode(toJson());
 
-  factory Translations.fromJson(Map<String, dynamic> json) => Translations(
+  factory Translations.fromJson(Map<String?, dynamic?> json) => Translations(
         de: json["de"] == null ? null : json["de"],
         es: json["es"] == null ? null : json["es"],
         fr: json["fr"] == null ? null : json["fr"],
@@ -297,7 +336,7 @@ class Translations {
         fa: json["fa"] == null ? null : json["fa"],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String?, dynamic?> toJson() => {
         "de": de == null ? null : de,
         "es": es == null ? null : es,
         "fr": fr == null ? null : fr,

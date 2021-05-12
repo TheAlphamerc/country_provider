@@ -1,3 +1,5 @@
+## [1.0.2] 12 May 2021
+* Migrate to Null Safety
 ## [1.0.1] - 01 Jun 2020
 
 * Added Domain, Numeric code, CISO, Lat long, Language name code and symbol

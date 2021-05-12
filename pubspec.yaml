@@ -1,15 +1,15 @@
 name: country_provider
 description: The plugin provides several methods to fetch countries info, Apply filter, and perform search operations.
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/TheAlphamerc/country_provider
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.13.1
+  http: ^0.13.3
 
 dev_dependencies:
   flutter_test:
