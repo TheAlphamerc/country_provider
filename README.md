@@ -1,22 +1,20 @@
-# country_provider Flutter Plugin ![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fthealphamerc) [![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/country_provider?style=social)](https://github.com/login?return_to=%2FTheAlphamerc%country_provider)  ![GitHub forks](https://img.shields.io/github/forks/TheAlphamerc/country_provider?style=social) 
+# country_provider Flutter Plugin ![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fthealphamerc) [![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/country_provider?style=social)](https://github.com/login?return_to=%2FTheAlphamerc%country_provider) ![GitHub forks](https://img.shields.io/github/forks/TheAlphamerc/country_provider?style=social)
 
-[![pub package](https://img.shields.io/pub/v/country_provider?color=blue)](https://pub.dev/packages/country_provider)  ![GitHub last commit](https://img.shields.io/github/last-commit/Thealphamerc/country_provider) ![GitHub pull requests](https://img.shields.io/github/issues-pr/TheAlphamerc/country_provider) ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/Thealphamerc/country_provider)   ![GitHub issues](https://img.shields.io/github/issues-raw/Thealphamerc/country_provider) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/thealphamerc/country_provider) [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/Thealphamerc/country_provider) 
+[![pub package](https://img.shields.io/pub/v/country_provider?color=blue)](https://pub.dev/packages/country_provider) ![GitHub last commit](https://img.shields.io/github/last-commit/Thealphamerc/country_provider) ![GitHub pull requests](https://img.shields.io/github/issues-pr/TheAlphamerc/country_provider) ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/Thealphamerc/country_provider) ![GitHub issues](https://img.shields.io/github/issues-raw/Thealphamerc/country_provider) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/thealphamerc/country_provider) [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/Thealphamerc/country_provider)
 
-
-Country Provider is a flutter library wrapper around the API provided by REST Countries https://restcountries.eu (Get information about countries via a RESTful API)
-
+Country Provider is a flutter library wrapper around the API provided by REST Countries https://restcountries.com/v3.1 (Get information about countries via a RESTful API)
 
 ## Download App ![GitHub All Releases](https://img.shields.io/github/downloads/Thealphamerc/country_provider/total?color=green)
+
 <a href="https://github.com/TheAlphamerc/country_provider/releases/download/v1.0.1/app-release.apk"><img src="https://playerzon.com/asset/download.png" width="200"></img></a>
 
 ## Getting Started
+
 ### 1. Add library to your pubspec.yaml
 
 ```yaml
-
 dependencies:
   country_provider: ^0.0.2
-
 ```
 
 ### 2. Import library in dart file
@@ -54,14 +52,14 @@ If partial name, this method could return a list of countries. Else a List of on
 Country result = await CountryProvider.getCountryByFullname("India")?.first;
 ```
 
--  Search by ISO 3166-1 2-letter or 3-letter country code.
+- Search by ISO 3166-1 2-letter or 3-letter country code.
 
 ```dart
 // Search by list of ISO 3166-1 2-letter or 3-letter country codes
 Country result = await CountryProvider.getCountryByCode("Ind")?.first;
 ```
 
--  Search by list of ISO 3166-1 2-letter or 3-letter country codes.
+- Search by list of ISO 3166-1 2-letter or 3-letter country codes.
 
 ```dart
 // Search by list of ISO 3166-1 2-letter or 3-letter country codes
@@ -82,7 +80,7 @@ List<Country>? result = await CountryProvider.getCountryByCurrencyCode("Inr")
 List<Country>? result = await CountryProvider.getCountriesByLanguageCode(["Hin","en",]);
 ```
 
--  Search by capital city.
+- Search by capital city.
 
 ```csharp
 // Search by capital city
@@ -98,11 +96,11 @@ You can use `var` instead of explicit types. I use explicit types to show you th
 List<Country>? result = await CountryProvider.getCountryByCallingCode(91);
 ```
 
--  Search by continent: Africa, Americas, Asia, Europe, Oceania.
+- Search by continent: Africa, Americas, Asia, Europe, Oceania.
 
 ```dart
 //  Search by continent: Africa, Americas, Asia, Europe, Oceania
-List<Country>? result = await CountryProvider.getcountryByRegionalBloc("Asia");
+List<Country>? result = await CountryProvider.getCountryByRegionalBloc("Asia");
 ```
 
 - Search by regional bloc: EU, EFTA, CARICOM, AU, USAN, EEU, AL, ASEAN , CAIS, CEFTA , NAFTA , SAARC.
@@ -119,7 +117,7 @@ List<Country>? result = await CountryProvider.getCountriesByContinent("ASEAN");
 To get filtered country data pass [CountryFilter](https://github.com/TheAlphamerc/country_provider/blob/master/lib/src/models/countryFilter.dart) model as argument in search countries method.
 
 ```dart
-// Get all countries name only 
+// Get all countries name only
 var countries = await CountryProvider.getAllCountries(filter: CountryFilter(isName: true));
 List<String> countriesInSpanish = countries.map((e) => e.name).toList();
 
@@ -128,7 +126,7 @@ var countries = await CountryProvider.getAllCountries(filter: CountryFilter(isNa
 List<String> countriesInSpanish = countries.map((e) => e.translations.es).toList();
 
 // Get Europe countries in French language
-var europeCountries = await CountryProvider.getcountryByRegionalBloc("Europe",filter: CountryFilter(isName: true));
+var europeCountries = await CountryProvider.getCountryByRegionalBloc("Europe",filter: CountryFilter(isName: true));
 List<String> europeCountriesInFrench = europeCountries.map((e) => e.translations.?fr).toList();
 
 // Get all countries name with their capital city only
@@ -141,89 +139,90 @@ var countries = await CountryProvider.getAllCountries(filter: CountryFilter(isNa
 // Feel free to aplly filters 🤓
 ```
 
-Default language for country name is English, but you can also get the name in other languages such as: `de`(German language),  `es`(Spanish language), `fr`(French language),  `ja`(Japanese language), `it`(Italian language), `br`(Breton language), `pt`(Portuguese language), `nl`(Dutch language), `hr`(Croatian language) and `fa`(Persian language).
-
+Default language for country name is English, but you can also get the name in other languages such as: `de`(German language), `es`(Spanish language), `fr`(French language), `ja`(Japanese language), `it`(Italian language), `br`(Breton language), `pt`(Portuguese language), `nl`(Dutch language), `hr`(Croatian language) and `fa`(Persian language).
 
 ## Country class
 
 ```dart
 class Country
-{	  
+{
     // Get Country name
     String? name;
 
     // Gets  Top Level Domain
     List<String>? topLevelDomain;
-    
+
     // Gets Alpha2 Code
     String? alpha2Code;
-    
+
     // Gets Alpha3 Code
     String? alpha3Code;
-    
+
     // Gets Calling Code
     List<String>? callingCodes;
-    
+
     // Gets Capital City
     String? capital;
-    
+
     // Get Alt Spelling
     List<String>? altSpellings;
-    
+
     // Get Region
     String? region;
-    
+
     // Get Sub region
     String? subregion;
-    
+
     // Get Population
     int? population;
-    
+
     // Get Latlng(Latitude and Longitude)
     List<double>? latlng;
-    
+
     // Get Demonym
     String? demonym;
-    
+
     // Get Area
     double? area;
-    
+
     // Get Gini
     double? gini;
-    
+
     // Get Timezone
     List<String>? timezones;
-    
+
     // Get Borders
     List<String>? borders;
-    
+
     // Get Native Name
     String? nativeName;
-    
+
     // Get Numeric Code
     String? numericCode;
-    
+
     // Get Currencies
     List<Currency>? currencies;
-    
+
      // Get Languages
     List<Language>? languages;
-    
+
     // Gets Translations
     Translations? translations;
-    
+
     // Get Flag
     String? flag;
-    
+
     // Get Regional Blocs
     List<RegionalBloc>? regionalBlocs;
-    
+
     // Get  Cioc(International Olympic Committee Code)
     String ?cioc;
 }
 ```
-## CountryFilter Class 
-``` dart
+
+## CountryFilter Class
+
+```dart
 class CountryFilter{
   bool isName;
   bool isCapital;
@@ -265,13 +264,13 @@ class CountryFilter{
 
 Thanks to Fayder Florez for developing [REST Countries API](https://github.com/fayder/restcountries).
 
-
 ## Other Flutter packages
- Name        | Stars        | Pub |
-:-------------------------|------------------------- | ------------------------- |
-|[Empty widget](https://github.com/TheAlphamerc/empty_widget) |[![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/empty_widget?style=social)](https://github.com/login?return_to=https://github.com/TheAlphamerc/empty_widget) | [![pub package](https://img.shields.io/pub/v/empty_widget?color=blue)](https://pub.dev/packages/empty_widget) |
-|[Add Thumbnail](https://github.com/TheAlphamerc/flutter_plugin_add_thumbnail) |[![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/flutter_plugin_add_thumbnail?style=social)](https://github.com/login?return_to=https://github.com/TheAlphamerc/flutter_plugin_add_thumbnail) | [![pub package](https://img.shields.io/pub/v/add_thumbnail?color=blue)](https://pub.dev/packages/add_thumbnail) |
-|[Filter List](https://github.com/TheAlphamerc/flutter_plugin_filter_list) |[![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/flutter_plugin_filter_list?style=social)](https://github.com/TheAlphamerc/flutter_plugin_filter_list) | [![pub package](https://img.shields.io/pub/v/filter_list?color=blue)](https://pub.dev/packages/filter_list) |
+
+| Name                                                                          | Stars                                                                                                                                                                                                          | Pub                                                                                                             |
+| :---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [Empty widget](https://github.com/TheAlphamerc/empty_widget)                  | [![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/empty_widget?style=social)](https://github.com/login?return_to=https://github.com/TheAlphamerc/empty_widget)                                 | [![pub package](https://img.shields.io/pub/v/empty_widget?color=blue)](https://pub.dev/packages/empty_widget)   |
+| [Add Thumbnail](https://github.com/TheAlphamerc/flutter_plugin_add_thumbnail) | [![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/flutter_plugin_add_thumbnail?style=social)](https://github.com/login?return_to=https://github.com/TheAlphamerc/flutter_plugin_add_thumbnail) | [![pub package](https://img.shields.io/pub/v/add_thumbnail?color=blue)](https://pub.dev/packages/add_thumbnail) |
+| [Filter List](https://github.com/TheAlphamerc/flutter_plugin_filter_list)     | [![GitHub stars](https://img.shields.io/github/stars/Thealphamerc/flutter_plugin_filter_list?style=social)](https://github.com/TheAlphamerc/flutter_plugin_filter_list)                                        | [![pub package](https://img.shields.io/pub/v/filter_list?color=blue)](https://pub.dev/packages/filter_list)     |
 
 ## Pull Requests
 
@@ -280,20 +279,13 @@ I welcome and encourage all pull requests. It usually will take me within 24-48 
 ## Created & Maintained By
 
 [Sonu Sharma](https://github.com/TheAlphamerc) ([Twitter](https://www.twitter.com/TheAlphamerc)) ([Youtube](https://www.youtube.com/user/sonusharma045sonu/))
-([Insta](https://www.instagram.com/_sonu_sharma__))  ![Twitter Follow](https://img.shields.io/twitter/follow/thealphamerc?style=social)
+([Insta](https://www.instagram.com/_sonu_sharma__)) ![Twitter Follow](https://img.shields.io/twitter/follow/thealphamerc?style=social)
 
 > If you found this project helpful or you learned something from the source code and want to thank me, consider buying me a cup of :coffee:
->
 
-> * <a href="https://www.buymeacoffee.com/thealphamerc"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="30"></a>
-> * [PayPal](https://www.paypal.me/TheAlphamerc/)
-
+> - <a href="https://www.buymeacoffee.com/thealphamerc"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="30"></a>
+> - [PayPal](https://www.paypal.me/TheAlphamerc/)
 
 ## Visitors Count
 
 <img align="left" src = "https://profile-counter.glitch.me/country_provider/count.svg" alt ="Loading">
-
-
-
-
-

@@ -1,15 +1,15 @@
 class Constants {
   /// Below are described the REST endpoints available that you can use to search for countries.
-  static String restCounteriesBaseUri = "https://restcountries.eu/rest/v2/";
-  static String allCountrySiffixUri = "all?";
-  static String countryByName = "name/";
-  static String countryByFullname = "?fullText=true";
-  static String countryByCode = "alpha/";
-  static String countriesByListOfCodes = "alpha?codes=";
-  static String countriesByCurrencyCode = "currency/";
-  static String countriesByLanguageCode = "lang/";
-  static String countriesByCapitalCity = "capital/";
-  static String countriesByCallingCode = "callingcode/";
-  static String countriesByContinent = "region/";
-  static String countriesByRegionalBLoc = "regionalbloc/";
+  static const String restCountriesBaseUri = "https://restcountries.com/v3.1/";
+  static const String allCountrySiffixUri = "all?";
+  static const String countryByName = "name/";
+  static const String countryByFullname = "?fullText=true";
+  static const String countryByCode = "alpha/";
+  static const String countriesByListOfCodes = "alpha?codes=";
+  static const String countriesByCurrencyCode = "currency/";
+  static const String countriesByLanguageCode = "lang/";
+  static const String countriesByCapitalCity = "capital/";
+  static const String countriesByCallingCode = "callingcode/";
+  static const String countriesByContinent = "region/";
+  static const String countriesByRegionalBLoc = "regionalbloc/";
 }

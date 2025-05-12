@@ -32,6 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Country>? _countryList;
   CountryFilter filter = CountryFilter();
   bool isLoading = false;
+  final CountryProvider _countryProvider = CountryProvider();
 
   void _searchCountry(int index) async {
     try {
@@ -41,53 +42,53 @@ class _MyHomePageState extends State<MyHomePage> {
       switch (index) {
         case 0:
           _countryList =
-              await CountryProvider.getAllCountries(filter: CountryFilter());
+              await _countryProvider.getAllCountries(filter: CountryFilter());
           break;
         case 1:
-          _countryList = await CountryProvider.getCountriesByName("Ameri",
+          _countryList = await _countryProvider.getCountriesByName("Ameri",
               filter: CountryFilter(isName: true));
           break;
         case 2:
           _countryList = [
-            await CountryProvider.getCountryByFullname("India",
+            await _countryProvider.getCountryByFullname("India",
                 filter: CountryFilter())
           ];
           break;
         case 3:
           _countryList = [
-            await CountryProvider.getCountryByCode("Ind",
+            await _countryProvider.getCountryByCode("Ind",
                 filter: CountryFilter())
           ];
           break;
         case 4:
-          _countryList = await CountryProvider.getCountriesByListOfCodes(
+          _countryList = await _countryProvider.getCountriesByListOfCodes(
               ["Ind", "col", "ru"],
               filter: CountryFilter());
           break;
         case 5:
-          _countryList = await CountryProvider.getCountryByCurrencyCode("Inr",
+          _countryList = await _countryProvider.getCountryByCurrencyCode("Inr",
               filter: CountryFilter());
           break;
         case 6:
-          _countryList = await CountryProvider.getCountriesByLanguageCode([
+          _countryList = await _countryProvider.getCountriesByLanguageCode([
             "Hin",
             "en",
           ], filter: CountryFilter());
           break;
         case 7:
-          _countryList = await CountryProvider.getCountryByCapitalCity("Delhi",
+          _countryList = await _countryProvider.getCountryByCapitalCity("Delhi",
               filter: CountryFilter());
           break;
         case 8:
-          _countryList = await CountryProvider.getCountryByCallingCode(91,
+          _countryList = await _countryProvider.getCountryByCallingCode(91,
               filter: CountryFilter());
           break;
         case 9:
-          _countryList = await CountryProvider.getcountryByRegionalBloc("Asia",
+          _countryList = await _countryProvider.getCountryByRegionalBloc("Asia",
               filter: CountryFilter());
           break;
         case 10:
-          _countryList = await CountryProvider.getCountriesByContinent("ASEAN",
+          _countryList = await _countryProvider.getCountriesByContinent("ASEAN",
               filter: CountryFilter());
           break;
 
@@ -256,7 +257,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Theme(
         data: ThemeData(dividerColor: Colors.transparent),
         child: ExpansionTile(
-          title: _title(model.name!),
+          title: _title(model.name?.common),
           children: <Widget>[
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -268,7 +269,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      _rowData("Capital", model.capital),
+                      _rowData("Capital", model.capital?.first),
                       _rowData("Region", model.region),
                       _rowData("Alpha2 Code", model.alpha2Code),
                       _rowData("Alpha3 Code", model.alpha3Code),
@@ -277,25 +278,25 @@ class _MyHomePageState extends State<MyHomePage> {
                           model.topLevelDomain?.map((e) => e).toList()),
                       _rowData("Demonym", model.demonym),
                       _rowData("Timezone", model.timezones?.first),
-                      _rowData("Calling code", model.callingCodes?.first),
+                      // _rowData("Calling code", model.callingCodes?.first),
                       _rowData("Numeric Code", model.numericCode),
                       _rowData("CIOS", model.cioc),
-                      _showListData("Currency Name",
-                          model.currencies?.map((x) => x.name).toList()),
-                      _showListData("Currency code",
-                          model.currencies?.map((x) => x.code).toList()),
-                      _showListData("Currency Symbol",
-                          model.currencies?.map((x) => x.symbol).toList()),
+                      // _showListData("Currency Name",
+                      //     model.currencies?.map((x) => x.name).toList()),
+                      // _showListData("Currency code",
+                      //     model.currencies?.map((x) => x.code).toList()),
+                      // _showListData("Currency Symbol",
+                      //     model.currencies?.map((x) => x.symbol).toList()),
                       _showListData("Lat Long",
                           model.latlng?.map((e) => e.toString()).toList()),
-                      _showListData("Language",
-                          model.languages?.map((e) => e.name).toList()),
-                      _showListData("Lang Naiive Name",
-                          model.languages?.map((e) => e.nativeName).toList()),
-                      _showListData("Lang iso6391 Code",
-                          model.languages?.map((e) => e.iso6391).toList()),
-                      _showListData("Lang iso6392 Code",
-                          model.languages?.map((e) => e.iso6392).toList()),
+                      // _showListData("Language",
+                      //     model.languages?.map((e) => e.name).toList()),
+                      // _showListData("Lang Naiive Name",
+                      //     model.languages?.map((e) => e.nativeName).toList()),
+                      // _showListData("Lang iso6391 Code",
+                      //     model.languages?.map((e) => e.iso6391).toList()),
+                      // _showListData("Lang iso6392 Code",
+                      //     model.languages?.map((e) => e.iso6392).toList()),
                       _showListData("Regional Blocs",
                           model.regionalBlocs?.map((e) => e.name).toList()),
                       _showListData("Regional Blocs Aacronym",
@@ -447,7 +448,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: Theme.of(context)
                         .typography
                         .dense
-                        .bodyText1!
+                        .bodyLarge!
                         .copyWith(color: Colors.black),
                   ),
       ),
